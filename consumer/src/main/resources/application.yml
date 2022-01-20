@@ -1,0 +1,48 @@
+spring:
+  cloud:
+    stream:
+      binders:
+        demo-binder: #绑定器
+          type: rabbit  #rabbitmq
+      rabbit:
+        bindings:
+          input-channel-demo: #消息输入通道 channel
+            consumer:
+              binding-routing-key: 'demoRoutingKey'
+      bindings:
+        input-channel-demo: #消息输入通道 channel
+          group: someGroup #防止多个消费者实例重复接收消息，这样一条消息只会发送给相同组的其中一个实例
+          destination: demo-exchange #交换机
+          binder: demo-binder #绑定器
+  rabbitmq:
+    host: 129.204.178.49
+    port: 5672
+    username: guest
+    password: guest
+# springcloud-function 形式
+#spring:
+#  cloud:
+#    stream:
+#      binders:
+#        demo-binder: #绑定器
+#          type: rabbit  #rabbitmq
+#      rabbit:
+#        bindings:
+#          sink1-in-0: #消息输入通道 channel : <functionName>-in-<index>
+#            consumer:
+#              binding-routing-key: 'demoRoutingKey'
+#      bindings:
+#        sink1-in-0: #消息输入通道 channel
+#          group: someGroup #防止多个消费者实例重复接收消息，这样一条消息只会发送给相同组的其中一个实例
+#          destination: demo-exchange #交换机
+#          binder: demo-binder #绑定器
+#    function:
+#      definition: sink1  #<functionName>
+#  rabbitmq:
+#      host: 129.204.178.49
+#      port: 5672
+#      username: guest
+#      password: guest
+
+server:
+  port: 8081

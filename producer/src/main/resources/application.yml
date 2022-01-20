@@ -1,0 +1,49 @@
+spring:
+  #消息队列地址
+  rabbitmq:
+    host: 129.204.178.49
+    port: 5672
+    username: guest
+    password: guest
+
+  cloud:
+    stream: #SpringCloud Stream 配置
+      bindings:
+        output-channel-demo: # channel 消息输出通道
+          destination: demo-exchange  # 交换机
+          binder: demo-binder  # 绑定器
+      binders:
+        demo-binder: #绑定器
+          type: rabbit # rabbitmq
+      rabbit:
+        bindings:
+          output-channel-demo: # channel 消息输出通道
+            producer:          # 生产者
+              routing-key-expression: '''demoRoutingKey'''
+# springcloud-function 形式
+#spring:
+#  #消息队列地址
+#  rabbitmq:
+#    host: 129.204.178.49
+#    port: 5672
+#    username: guest
+#    password: guest
+#
+#  cloud:
+#    stream: #SpringCloud Stream 配置
+#      bindings:
+#        source1-out-0: # channel 消息输出通道
+#          destination: demo-exchange  # 交换机
+#          binder: demo-binder  # 绑定器
+#      binders:
+#        demo-binder: #绑定器
+#          type: rabbit # rabbitmq
+#      rabbit:
+#        bindings:
+#          source1-out-0: # channel 消息输出通道
+#            producer:          # 生产者
+#              routing-key-expression: '''demoRoutingKey'''
+#    function:
+#      definition: source1
+server:
+  port: 8080

@@ -1,0 +1,9 @@
+# Project exclude paths
+### IntelliJ IDEA ###
+/.idea
+
+*.iws
+*.iml
+*.ipr
+/consumer/target/
+/producer/target/
