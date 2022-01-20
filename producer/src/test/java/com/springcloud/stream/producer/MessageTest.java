@@ -10,6 +10,9 @@ import org.springframework.cloud.stream.function.StreamBridge;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.context.junit4.SpringRunner;
 
+/**
+ * 集成测试
+ * */
 @SpringBootTest(classes = ProducerApplication.class)
 @RunWith(SpringRunner.class)
 @Slf4j
